@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Cpp\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Cpp\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Cpp\ObjectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Cpp\ObjectManager\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Cpp\ObjectManager\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Cpp\ObjectManager\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Cpp\ObjectManager\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Cpp\ObjectManager\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Cpp\ObjectManager\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>Cpp\ObjectManager\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Cpp\ObjectManager\GameObject\Child</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Cpp\ObjectManager\GameObject\Child</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <CLInclude Include="resource.h">
+      <Filter>Header</Filter>
+    </CLInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Header\ObjectManager\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Header\ObjectManager\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header\ObjectManager\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header\ObjectManager\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header\ObjectManager\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header\ObjectManager\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Header\ObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Header\ObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header\ObjectManager\GameObject\Child</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header\ObjectManager\GameObject\Child</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header\SceneManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{c6febcb6-b0de-4b77-8427-002ca31aa9f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cpp">
+      <UniqueIdentifier>{f114ab64-afd2-4d07-8199-6a57f590f898}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{036267fa-6982-4513-9fa7-c994213245f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\ObjectManager">
+      <UniqueIdentifier>{a470a2a8-1092-4e29-9dea-3615ced8a524}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\ObjectManager\GameObject">
+      <UniqueIdentifier>{3be72030-9b60-469d-88d0-e77d6ae301de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\ObjectManager\GameObject\Child">
+      <UniqueIdentifier>{1a8ecec5-595c-4bf3-b8cf-c79f5a837c9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\SceneManager">
+      <UniqueIdentifier>{901d4b48-f6cd-4af8-ac17-ed87d50d2bb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cpp\ObjectManager">
+      <UniqueIdentifier>{4918900f-98f7-4520-a41e-ce26dbc51550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cpp\SceneManager">
+      <UniqueIdentifier>{851c14a9-0035-4a9e-916b-84b79d25b382}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cpp\ObjectManager\GameObject">
+      <UniqueIdentifier>{e8de172f-c587-4911-89d8-1029b086b374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cpp\ObjectManager\GameObject\Child">
+      <UniqueIdentifier>{727c5ce9-31a0-4f1a-b70e-c2a29f600f91}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Tutorial07.rc">
+      <Filter>Resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader.fx">
+      <Filter>Resource</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>
