@@ -13,6 +13,16 @@ struct SPRITE_INFO
 	float width, height;
 };
 
+struct ANIMATION_INFO
+{
+	WCHAR *spritePath;
+	float frameWidth;
+	float frameHeight;
+	float row;
+	float column;
+	float speed;
+};
+
 struct SimpleVertex
 {
 	XMFLOAT3 Pos;

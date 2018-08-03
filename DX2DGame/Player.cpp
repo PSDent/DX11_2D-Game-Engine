@@ -37,20 +37,24 @@ void Player::SetKeyFunc()
 
 void Player::MoveLeft()
 {
-	MessageBox(NULL, L"Left", L"Test", MB_OK);
+	GameObject::MovePos(-100, 0);
+	// MessageBox(NULL, L"Left", L"Test", MB_OK);
 }
 
 void Player::MoveRight()
 {
-	MessageBox(NULL, L"Right", L"Test", MB_OK);
+	GameObject::MovePos(100, 0);
+	//MessageBox(NULL, L"Right", L"Test", MB_OK);
 }
 
 void Player::MoveDown()
 {
-	MessageBox(NULL, L"Down", L"Test", MB_OK);
+	GameObject::MovePos(0, 100);
+	//MessageBox(NULL, L"Down", L"Test", MB_OK);
 }
 
 void Player::MoveUp()
 {
-	MessageBox(NULL, L"Up", L"Test", MB_OK);
+	GameObject::MovePos(0, -100);
+	//MessageBox(NULL, L"Up", L"Test", MB_OK);
 }

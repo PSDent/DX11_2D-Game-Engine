@@ -12,13 +12,19 @@ GameObject::GameObject(const GameObject& a) {}
 
 bool GameObject::Initialize(ID3D11DeviceContext *deviceContext, ID3D11Device* device, float posX, float posY, SPRITE_INFO spriteInfo, float scrWidth, float scrHeight)
 {
-	m_sprite = new Sprite();
-	m_sprite->Initialize(device, deviceContext, spriteInfo, posX, posY, scrWidth, scrHeight);
-
 	m_position.x = posX;
 	m_position.y = posY;
 
+	m_sprite = new Sprite(m_position.x, m_position.y);
+
+	m_sprite->Initialize(device, deviceContext, spriteInfo, posX, posY, scrWidth, scrHeight);
 	return true;
+}
+
+void GameObject::Test()
+{
+	m_position.x += 0.5f;
+	m_position.y += 0.5f;
 }
 
 void GameObject::MovePos(float deltaX, float deltaY)
@@ -44,6 +50,7 @@ Sprite* GameObject::GetSprite()
 
 void GameObject::Render(ID3D11DeviceContext *deviceContext)
 {
+	//Test();
 	m_sprite->Render(deviceContext);
 }
 

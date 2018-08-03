@@ -28,9 +28,6 @@
     <ClCompile Include="Controller.cpp">
       <Filter>Cpp\ObjectManager\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Animator.cpp">
-      <Filter>Cpp\ObjectManager\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Cpp\ObjectManager\GameObject\Child</Filter>
     </ClCompile>
@@ -40,6 +37,15 @@
     <ClCompile Include="Main.cpp">
       <Filter>Cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Animator.cpp">
+      <Filter>Cpp\ObjectManager\GameObject\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Cpp\ObjectManager\GameObject\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Cpp\ObjectManager\GameObject\Child</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
@@ -48,9 +54,6 @@
     <CLInclude Include="resource.h">
       <Filter>Header</Filter>
     </CLInclude>
-    <ClInclude Include="Animator.h">
-      <Filter>Header\ObjectManager\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Header\ObjectManager\GameObject</Filter>
     </ClInclude>
@@ -83,6 +86,15 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Header\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Header\ObjectManager\GameObject\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header\ObjectManager\GameObject\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header\ObjectManager\GameObject\Child</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +130,12 @@
     </Filter>
     <Filter Include="Cpp\ObjectManager\GameObject\Child">
       <UniqueIdentifier>{727c5ce9-31a0-4f1a-b70e-c2a29f600f91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cpp\ObjectManager\GameObject\Animator">
+      <UniqueIdentifier>{6b32e651-54e1-411b-8050-32d93b2a2c48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\ObjectManager\GameObject\Animator">
+      <UniqueIdentifier>{2f61790a-d1d0-42ee-8f7b-a182faefaae7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

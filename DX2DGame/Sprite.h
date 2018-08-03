@@ -9,7 +9,7 @@
 class Sprite
 {
 public:
-	Sprite();
+	Sprite(float &, float&);
 	~Sprite();
 	//Sprite(const Sprite&);
 
@@ -18,9 +18,10 @@ public:
 	Texture* GetTexture();
 	ID3D11ShaderResourceView* GetTextureView();
 	int GetIndex();
+	void ChangeTexCoord(int, int);
 
 private:
-	void SetSpritePos(float, float);
+	void SetSpritePos();
 	void SetScreenInfo(float, float);
 	void SetSpriteInfo(SPRITE_INFO);
 	void InitializeBuffer(ID3D11Device*, ID3D11DeviceContext*);
@@ -29,10 +30,19 @@ private:
 
 private:
 	int m_index;
+
+	float &m_objPosX;
+	float &m_objPosY;
+
 	float m_PosX;
 	float m_PosY;
 	float m_scrWidth;
 	float m_scrHeight;
+
+	float m_TexWidth;
+	float m_TexHeight;
+	float m_TexPosX;
+	float m_TexPosY;
 
 	Texture *m_texture;
 	SPRITE_INFO *m_spriteInfo;

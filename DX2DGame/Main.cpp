@@ -49,6 +49,7 @@ XMMATRIX                            g_View;
 XMMATRIX                            g_Projection;
 XMMATRIX							g_Ortho;
 XMFLOAT4                            g_vMeshColor( 0.7f, 0.7f, 0.7f, 1.0f );
+ID3D11BlendState *g_pBlendState;
 
 ObjectManager *objManager = NULL;
 Input *input = NULL;
@@ -61,11 +62,6 @@ HRESULT InitDevice();
 void CleanupDevice();
 LRESULT CALLBACK    WndProc( HWND, UINT, WPARAM, LPARAM );
 void Render();
-
-void Test()
-{
-	MessageBox(NULL, L"Test", L"Test", MB_OK);
-}
 
 //--------------------------------------------------------------------------------------
 // Entry point to the program. Initializes everything and goes into a message processing 
@@ -393,9 +389,9 @@ HRESULT InitDevice()
     g_World = XMMatrixIdentity();
 
     // Initialize the view matrix
-    XMVECTOR Eye = XMVectorSet( 15.0f, 0.0f, -0.5f, 0.0f );
-    XMVECTOR At = XMVectorSet( 0.0f, 0.0f, 1.0f, 0.0f );
-    XMVECTOR Up = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
+    XMVECTOR Eye = XMVectorSet( 0.0f, 0.0f, -0.5f, 0.0f );
+    XMVECTOR At = XMVectorSet( 0.0f, 0.0f, 0.0f, 0.0f );
+    XMVECTOR Up = XMVectorSet( 0.1f, 0.0f, 0.0f, 0.0f );
     g_View = XMMatrixLookAtLH( Eye, At, Up );
 
     CBNeverChanges cbNeverChanges;
@@ -403,12 +399,29 @@ HRESULT InitDevice()
     g_pImmediateContext->UpdateSubresource( g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0 );
 
     // Initialize the projection matrix
-	g_Ortho = XMMatrixOrthographicLH(width, height, 0.01f, 5.0f);
-	//g_Ortho = XMMatrixOrthographicLH(width, height, 0.01f, 1.0f);
-    
+	g_Ortho = XMMatrixOrthographicLH(width, height, 0.01f, 1000.0f);
+
     CBChangeOnResize cbChangesOnResize;
 	cbChangesOnResize.mProjection = g_Ortho;//XMMatrixTranspose(g_Projection);
     g_pImmediateContext->UpdateSubresource( g_pCBChangeOnResize, 0, NULL, &cbChangesOnResize, 0, 0 );
+
+	D3D11_BLEND_DESC blendStateDesc;
+
+	ZeroMemory(&blendStateDesc, sizeof(D3D11_BLEND_DESC));
+	blendStateDesc.RenderTarget[0].BlendEnable = TRUE;
+	blendStateDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	blendStateDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	blendStateDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	blendStateDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+	blendStateDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+	blendStateDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	blendStateDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+	hr = g_pd3dDevice->CreateBlendState(&blendStateDesc, &g_pBlendState);
+	if (FAILED(hr)) {
+		MessageBox(g_hWnd, L"Failed to Create Blend State.", L"Error", MB_OK);
+		return false;
+	}
+	g_pImmediateContext->OMSetBlendState(g_pBlendState, NULL, 0xffffffff);
 
     return S_OK;
 }
@@ -513,11 +526,11 @@ void Render()
     cb.vMeshColor = g_vMeshColor; 
     g_pImmediateContext->UpdateSubresource( g_pCBChangesEveryFrame, 0, NULL, &cb, 0, 0 );
 
-	XMVECTOR Eye = XMVectorSet(0.0f, 0.0f, -1.0f, 0.0f);
-	XMVECTOR At = XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
-	XMVECTOR Up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+	XMVECTOR Eye = XMVectorSet(0.0f + a, 0.0f, -1.0f, 0.0f);
+	XMVECTOR At = XMVectorSet(0.0f + a, 0.0f, 0.0f, 0.0f);
+	XMVECTOR Up = XMVectorSet(0.0f, 0.1f, 0.0f, 0.0f);
 	g_View = XMMatrixLookAtLH(Eye, At, Up);
-	a -= 0.001f;
+	//a += 0.5f;
 	CBNeverChanges cbNeverChanges;
 	cbNeverChanges.mView = XMMatrixTranspose(g_View);
 	g_pImmediateContext->UpdateSubresource(g_pCBNeverChanges, 0, NULL, &cbNeverChanges, 0, 0);

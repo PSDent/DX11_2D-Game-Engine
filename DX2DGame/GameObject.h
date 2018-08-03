@@ -5,6 +5,7 @@
 #include "Animator.h"
 #include "Common.h"
 
+#include <vector>
 #include <D3D11.h>
 #include <d3dcompiler.h>
 #include <DirectXMath.h>
@@ -31,6 +32,8 @@ public:
 	Sprite* GetSprite();
 	ID3D11ShaderResourceView* GetTextureView();
 
+
+	void Test();
 	//void SetPosition(XMFLOAT3);
 
 	//// Collision Method
@@ -51,4 +54,6 @@ private:
 	Sprite *m_sprite;
 	Collider *m_collider;
 	Animator *m_animator;
+	std::vector<GameObject> m_childObj;
+
 };

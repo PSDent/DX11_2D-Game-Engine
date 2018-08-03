@@ -1,11 +1,16 @@
 #include "Sprite.h"
 
-Sprite::Sprite()
+Sprite::Sprite(float &X, float &Y) : m_objPosX(X), m_objPosY(Y)
 {
 	m_texture = NULL;
 	m_spriteInfo = NULL;
 	m_indexBuffer = NULL;
 	m_vertexBuffer = NULL;
+
+	m_TexWidth = 1.0f;
+	m_TexHeight = 1.0f;
+	m_TexPosX = 0;
+	m_TexPosY = 0;
 }
 
 Sprite::~Sprite()
@@ -16,6 +21,12 @@ Sprite::~Sprite()
 //Sprite::Sprite(const Sprite& sprite)
 //{
 //}
+
+void Sprite::ChangeTexCoord(int x, int y)
+{
+
+}
+
 ID3D11ShaderResourceView* Sprite::GetTextureView()
 {
 	return m_texture->GetTextureView();
@@ -33,7 +44,7 @@ bool Sprite::Initialize(ID3D11Device* device, ID3D11DeviceContext* deviceContext
 	// 윈도우 크기 저장
 	SetScreenInfo(width, height);
 	
-	SetSpritePos(posX, posY);
+	SetSpritePos();
 
 	// 텍스처 적재 
 	LoadTexture(device, spriteInfo.spritePath);
@@ -118,10 +129,10 @@ void Sprite::InitializeBuffer(ID3D11Device* device, ID3D11DeviceContext* deviceC
 	}
 }
 
-void Sprite::SetSpritePos(float posX, float posY)
+void Sprite::SetSpritePos()
 {
-	m_PosX = posX;
-	m_PosY = posY;
+	m_PosX = m_objPosX;
+	m_PosY = m_objPosY;
 }
 
 void Sprite::SetScreenInfo(float width, float height)
@@ -152,6 +163,38 @@ void Sprite::Render(ID3D11DeviceContext* deviceContext)
 	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 }
 
+//void Sprite::UpdateBuffer(ID3D11DeviceContext* deviceContext)
+//{
+//	D3D11_MAPPED_SUBRESOURCE mappedResource;
+//	SimpleVertex* verticesPtr;
+//
+//	float left, right, top, bottom;
+//	// Calculate the screen coordinates of the left side of the bitmap.
+//	left = (float)((m_scrWidth / 2) * -1) + (float)m_PosX;
+//
+//	// Calculate the screen coordinates of the right side of the bitmap.
+//	right = left + (float)m_spriteInfo->width;
+//
+//	// Calculate the screen coordinates of the top of the bitmap.
+//	top = (float)(m_scrHeight / 2) - (float)m_PosY;
+//
+//	// Calculate the screen coordinates of the bottom of the bitmap.
+//	bottom = top - (float)m_spriteInfo->height;
+//
+//	SimpleVertex vertices[] =
+//	{
+//		{ XMFLOAT3(left, bottom, 0.0f), XMFLOAT2(0.0f, 1.0f) },
+//		{ XMFLOAT3(left, top, 0.0f), XMFLOAT2(0.0f, 0.0f) },
+//		{ XMFLOAT3(right, top, 0.0f), XMFLOAT2(1.0f, 0.0f) },
+//		{ XMFLOAT3(right, bottom, 0.0f), XMFLOAT2(1.0f, 1.0f) }
+//	};
+//
+//	deviceContext->Map(m_vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+//	verticesPtr = (SimpleVertex*)mappedResource.pData;
+//	memcpy(verticesPtr, (void*)vertices, (sizeof(SimpleVertex) * 8));
+//	deviceContext->Unmap(m_vertexBuffer, 0);
+//}
+
 void Sprite::UpdateBuffer(ID3D11DeviceContext* deviceContext)
 {
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
@@ -159,23 +202,30 @@ void Sprite::UpdateBuffer(ID3D11DeviceContext* deviceContext)
 
 	float left, right, top, bottom;
 	// Calculate the screen coordinates of the left side of the bitmap.
-	left = (float)((m_scrWidth / 2) * -1) + (float)m_PosX;
+	left = (float)((m_scrWidth / 2) * -1) + (float)m_objPosX;
 
 	// Calculate the screen coordinates of the right side of the bitmap.
 	right = left + (float)m_spriteInfo->width;
 
 	// Calculate the screen coordinates of the top of the bitmap.
-	top = (float)(m_scrHeight / 2) - (float)m_PosY;
+	top = (float)(m_scrHeight / 2) - (float)m_objPosY;
 
 	// Calculate the screen coordinates of the bottom of the bitmap.
 	bottom = top - (float)m_spriteInfo->height;
 
+	//SimpleVertex vertices[] =
+	//{
+	//	{ XMFLOAT3(left, bottom, 0.0f), XMFLOAT2(0.0f, 1.0f) },
+	//	{ XMFLOAT3(left, top, 0.0f), XMFLOAT2(0.0f, 0.0f) },
+	//	{ XMFLOAT3(right, top, 0.0f), XMFLOAT2(1.0f, 0.0f) },
+	//	{ XMFLOAT3(right, bottom, 0.0f), XMFLOAT2(1.0f, 1.0f) }
+	//};
 	SimpleVertex vertices[] =
 	{
-		{ XMFLOAT3(left, bottom, 0.0f), XMFLOAT2(0.0f, 1.0f) },
-		{ XMFLOAT3(left, top, 0.0f), XMFLOAT2(0.0f, 0.0f) },
-		{ XMFLOAT3(right, top, 0.0f), XMFLOAT2(1.0f, 0.0f) },
-		{ XMFLOAT3(right, bottom, 0.0f), XMFLOAT2(1.0f, 1.0f) }
+		{ XMFLOAT3(left, bottom, 0.0f), XMFLOAT2(m_TexPosX * m_TexWidth, (m_TexPosY + 1) * m_TexHeight) },
+		{ XMFLOAT3(left, top, 0.0f), XMFLOAT2(m_TexPosX * m_TexWidth, m_TexPosY * m_TexHeight) },
+		{ XMFLOAT3(right, top, 0.0f), XMFLOAT2((m_TexPosX + 1) * m_TexWidth, m_TexPosY * m_TexHeight) },
+		{ XMFLOAT3(right, bottom, 0.0f), XMFLOAT2((m_TexPosX + 1), (m_TexPosY + 1) * m_TexHeight) }
 	};
 
 	deviceContext->Map(m_vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
