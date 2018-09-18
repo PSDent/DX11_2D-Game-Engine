@@ -10,14 +10,14 @@ GameObject::GameObject()
 GameObject::~GameObject() { }
 GameObject::GameObject(const GameObject& a) {}
 
-bool GameObject::Initialize(ID3D11DeviceContext *deviceContext, ID3D11Device* device, float posX, float posY, SPRITE_INFO spriteInfo, float scrWidth, float scrHeight)
+bool GameObject::Initialize(ID3D11DeviceContext *deviceContext, ID3D11Device* device, float posX, float posY, float scrWidth, float scrHeight)
 {
 	m_position.x = posX;
 	m_position.y = posY;
 
-	m_sprite = new Sprite(m_position.x, m_position.y);
+	//m_sprite = new Sprite(m_position.x, m_position.y);
 
-	m_sprite->Initialize(device, deviceContext, spriteInfo, posX, posY, scrWidth, scrHeight);
+	//m_sprite->Initialize(device, deviceContext, spriteInfo, posX, posY, scrWidth, scrHeight);
 	return true;
 }
 
@@ -51,7 +51,12 @@ Sprite* GameObject::GetSprite()
 void GameObject::Render(ID3D11DeviceContext *deviceContext)
 {
 	//Test();
-	m_sprite->Render(deviceContext);
+	if(m_sprite)
+		m_sprite->Render(deviceContext);
+	//if (m_animator)
+	//	m_animator->
+	//if (m_collider)
+	//	m_collider->foo();
 }
 
 void GameObject::Release()

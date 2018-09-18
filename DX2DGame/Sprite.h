@@ -2,6 +2,7 @@
 
 #include "Texture.h"
 #include "Common.h"
+#include "Animation.h"
 
 #include <Windows.h>
 #include <D3D11.h>
@@ -13,12 +14,17 @@ public:
 	~Sprite();
 	//Sprite(const Sprite&);
 
-	bool Initialize(ID3D11Device*, ID3D11DeviceContext*, SPRITE_INFO, float, float, float, float);
+	bool Initialize(ID3D11Device*, ID3D11DeviceContext*, SPRITE_INFO, float, float);
 	void Render(ID3D11DeviceContext* deviceContext);
 	Texture* GetTexture();
 	ID3D11ShaderResourceView* GetTextureView();
 	int GetIndex();
 	void ChangeTexCoord(int, int);
+
+	void AnimationSet(Animation);
+
+	int* GetTexPosX();
+	int* GetTexPosY();
 
 private:
 	void SetSpritePos();
@@ -36,6 +42,13 @@ private:
 
 	float m_PosX;
 	float m_PosY;
+
+	float m_width;
+	float m_height;
+
+	float m_scaleX;
+	float m_scaleY;
+
 	float m_scrWidth;
 	float m_scrHeight;
 
@@ -45,8 +58,8 @@ private:
 	float m_TexPosY;
 
 	Texture *m_texture;
+	ANIMATION_INFO *m_animInfo;
 	SPRITE_INFO *m_spriteInfo;
 	ID3D11Buffer *m_indexBuffer;
 	ID3D11Buffer *m_vertexBuffer;
-	
 };

@@ -395,6 +395,8 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Waiter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -413,6 +415,8 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Waiter.h" />
     <ResourceCompile Include="Tutorial07.rc" />
   </ItemGroup>
   <ItemGroup>

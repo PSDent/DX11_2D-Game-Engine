@@ -13,9 +13,9 @@ Player::~Player()
 
 
 void Player::Initialize(ID3D11DeviceContext* deviceContext, ID3D11Device* device, 
-	float posX, float posY, SPRITE_INFO spriteInfo, float scrWidth, float scrHeight, Input* input)
+	float posX, float posY, float scrWidth, float scrHeight, Input* input)
 {
-	GameObject::Initialize(deviceContext, device, posX, posY, spriteInfo, scrWidth, scrHeight);
+	GameObject::Initialize(deviceContext, device, posX, posY, scrWidth, scrHeight);
 	SetInput(input);
 	SetKeyFunc();
 }

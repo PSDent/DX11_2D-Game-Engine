@@ -15,7 +15,7 @@ public:
 	~ObjectManager();
 	
 	void Initialize(ID3D11DeviceContext*, ID3D11Device*, float, float, Input*);
-	void CreateObject(float, float, SPRITE_INFO);
+	void CreateObject(float, float);
 	void Render();
 
 	void Release();

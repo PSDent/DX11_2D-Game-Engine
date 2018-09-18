@@ -6,11 +6,12 @@
 using namespace DirectX;
 
 static WCHAR *SEAFLOOR = L"seafloor.dds";
+static WCHAR *MUSHROOM = L"Mush.png";
 
 struct SPRITE_INFO
 {
-	WCHAR *spritePath;
-	float width, height;
+	WCHAR *spritePath;		// Sprite 경로
+	float width, height;    // Sprite 가로 세로
 };
 
 struct ANIMATION_INFO

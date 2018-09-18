@@ -29,7 +29,8 @@ void ObjectManager::Initialize(ID3D11DeviceContext* deviceContext, ID3D11Device*
 
 void ObjectManager::FirstCreate()
 {
-	CreateObject(200, 200, SPRITE_INFO{SEAFLOOR, 100.0f, 100.0f});
+	CreateObject(0, 0);
+	//CreateObject(200, 200, SPRITE_INFO{ MUSHROOM, 100.0f, 100.0f }, ANIMATION_INFO{NULL});
 	//CreateObject(400, 400, SPRITE_INFO{SEAFLOOR, 100.0f, 100.0f });
 	//CreateObject(600, 600, SPRITE_INFO{ SEAFLOOR, 100.0f, 100.0f });
 }
@@ -39,10 +40,14 @@ void ObjectManager::InsertObject()
 
 }
 
-void ObjectManager::CreateObject(float posX, float posY, SPRITE_INFO spriteInfo)
+void ObjectManager::CreateObject(float posX, float posY)
 {
 	Player *temp = new Player();
-	temp->Initialize(m_deviceContext, m_device, posX, posY, spriteInfo, m_scrWidth, m_scrHeight, m_input);
+	temp->Initialize(m_deviceContext, m_device, posX, posY, m_scrWidth, m_scrHeight, m_input);
+	temp->CreateComponent<Sprite>();
+	temp->GetSprite()->Initialize(m_device, m_deviceContext, SPRITE_INFO{ MUSHROOM, 1, 1 }, m_scrWidth, m_scrHeight);
+	temp->CreateComponent<Animator>();
+	temp->GetComponent<Animator*>()->AddAnim(Animation("Test", ANIMATION_INFO{ MUSHROOM, 0.25f, 0.25f, 3, 4, 10} ));
 	m_objContainer->push_back(temp);
 
 	/*GameObject *temp = new GameObject();

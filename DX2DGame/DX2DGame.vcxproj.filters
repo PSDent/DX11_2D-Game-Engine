@@ -46,6 +46,12 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Cpp\ObjectManager\GameObject\Child</Filter>
     </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Cpp\ObjectManager\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Waiter.cpp">
+      <Filter>Cpp\ObjectManager\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
@@ -95,6 +101,12 @@
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Header\ObjectManager\GameObject\Child</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Header\ObjectManager\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Waiter.h">
+      <Filter>Header\ObjectManager\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

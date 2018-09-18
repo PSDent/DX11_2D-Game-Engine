@@ -9,7 +9,7 @@ public:
 	Player();
 	~Player();
 
-	void Initialize(ID3D11DeviceContext*, ID3D11Device*, float, float, SPRITE_INFO, float, float, Input*);
+	void Initialize(ID3D11DeviceContext*, ID3D11Device*, float, float, float, float, Input*);
 	void SetInput(Input*);
 	void MoveDown();
 private:
