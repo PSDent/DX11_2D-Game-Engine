@@ -199,6 +199,7 @@ void Sprite::UpdateBuffer(ID3D11DeviceContext* deviceContext)
 		if (m_TexPosX > m_animInfo->column)
 		{
 			m_TexPosY += 1;
+			m_TexPosX = 0;
 			if (m_TexPosY > m_animInfo->row)
 			{
 				m_TexPosY = 0;
@@ -233,6 +234,9 @@ void Sprite::AnimationSet(Animation anim)
 	m_animInfo->row = animInfo.row;
 	m_animInfo->column = animInfo.column;
 	m_animInfo->speed = animInfo.speed;
+
+	m_TexWidth = m_animInfo->frameWidth;
+	m_TexHeight = m_animInfo->frameHeight;
 }
 
 int Sprite::GetIndex()

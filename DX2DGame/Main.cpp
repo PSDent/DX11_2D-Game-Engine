@@ -92,7 +92,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
         }
         else
         {
-			Sleep(50);
+			Sleep(200);
             Render();
         }
     }

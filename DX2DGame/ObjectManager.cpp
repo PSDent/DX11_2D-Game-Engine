@@ -44,10 +44,13 @@ void ObjectManager::CreateObject(float posX, float posY)
 {
 	Player *temp = new Player();
 	temp->Initialize(m_deviceContext, m_device, posX, posY, m_scrWidth, m_scrHeight, m_input);
+	
 	temp->CreateComponent<Sprite>();
 	temp->GetSprite()->Initialize(m_device, m_deviceContext, SPRITE_INFO{ MUSHROOM, 1, 1 }, m_scrWidth, m_scrHeight);
+	
 	temp->CreateComponent<Animator>();
-	temp->GetComponent<Animator*>()->AddAnim(Animation("Test", ANIMATION_INFO{ MUSHROOM, 0.25f, 0.25f, 3, 4, 10} ));
+	temp->GetComponent<Animator*>()->AddAnim(Animation("Test", ANIMATION_INFO{ MUSHROOM, 0.26f, 0.25f, 3, 4, 10} ));
+	
 	m_objContainer->push_back(temp);
 
 	/*GameObject *temp = new GameObject();

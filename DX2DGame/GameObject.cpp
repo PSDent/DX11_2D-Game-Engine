@@ -54,7 +54,7 @@ void GameObject::Render(ID3D11DeviceContext *deviceContext)
 	if(m_sprite)
 		m_sprite->Render(deviceContext);
 	//if (m_animator)
-	//	m_animator->
+	//	m_animator->Frame();
 	//if (m_collider)
 	//	m_collider->foo();
 }

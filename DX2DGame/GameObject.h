@@ -38,7 +38,6 @@ public:
 	Sprite* GetSprite();
 	ID3D11ShaderResourceView* GetTextureView();
 
-
 	void Test();
 	//void SetPosition(XMFLOAT3);
 
@@ -93,11 +92,14 @@ T GameObject::GetComponent()
 {
 	if (typeid(T) == typeid(Animator*))
 	{
-		return m_animator;
+		if(m_animator != NULL)
+			return (T)m_animator;
 	}
-	else if (typeid(T) == typeid(Sprite*))
+
+	if (typeid(T) == typeid(Sprite*))
 	{
-		return m_sprite;
+		if (m_sprite != NULL)
+			return (T)m_sprite;
 	}
 	//else if (typeid(T) == typeid(Collider))
 	//{
