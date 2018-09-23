@@ -7,6 +7,7 @@ using namespace DirectX;
 
 static WCHAR *SEAFLOOR = L"seafloor.dds";
 static WCHAR *MUSHROOM = L"Mush.png";
+static WCHAR *FUMICO = L"Fumiko.png";
 
 struct SPRITE_INFO
 {
