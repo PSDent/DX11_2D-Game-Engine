@@ -48,11 +48,10 @@ Sprite* GameObject::GetSprite()
 	return m_sprite;
 }
 
-void GameObject::Render(ID3D11DeviceContext *deviceContext)
+void GameObject::Render(ID3D11DeviceContext *deviceContext, float deltaTime)
 {
-	//Test();
 	if(m_sprite)
-		m_sprite->Render(deviceContext);
+		m_sprite->Render(deviceContext, deltaTime);
 	//if (m_animator)
 	//	m_animator->Frame();
 	//if (m_collider)
@@ -63,7 +62,7 @@ void GameObject::Release()
 {
 	if (m_sprite)
 	{
-
+		
 	}
 
 	if (m_collider)

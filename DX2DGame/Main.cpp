@@ -15,6 +15,7 @@
 #include "Common.h"
 #include "ObjectManager.h"
 #include "Input.h"
+#include "Timer.h"
 
 #include <DirectXMath.h>
 
@@ -53,6 +54,7 @@ ID3D11BlendState *g_pBlendState;
 
 ObjectManager *objManager = NULL;
 Input *input = NULL;
+Timer *timer = NULL;
 
 //--------------------------------------------------------------------------------------
 // Forward declarations
@@ -92,7 +94,7 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
         }
         else
         {
-			Sleep(200);
+			//Sleep(200);
             Render();
         }
     }
@@ -337,9 +339,12 @@ HRESULT InitDevice()
 
 	input = new Input();
 	input->Initialize();
+	
 	objManager = new ObjectManager();
 	objManager->Initialize(g_pImmediateContext, g_pd3dDevice, width, height, input);
 
+	timer = new Timer();
+	timer->Initialize();
 	// =============
 
 	D3D11_BUFFER_DESC bd;
@@ -477,20 +482,45 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 			switch (wParam)
 			{
 			case VK_LEFT:
-				input->CallKeyFunc("LEFT");
+				input->InputKey("LEFT", true);
+				//input->CallKeyFunc("LEFT");
 				break;
 			case VK_RIGHT:
-				input->CallKeyFunc("RIGHT");
+				input->InputKey("RIGHT", true);
+				//input->CallKeyFunc("RIGHT");
 				break;
 			case VK_UP:
-				input->CallKeyFunc("UP");
+				input->InputKey("UP", true);
+				//input->CallKeyFunc("UP");
 				break;
 			case VK_DOWN:
-				input->CallKeyFunc("DOWN");
+				input->InputKey("DOWN", true);
+				//input->CallKeyFunc("DOWN");
 				break;
 			case VK_ESCAPE:
 				PostQuitMessage(0);
 			default:
+				break;
+			}
+			break;
+		case WM_KEYUP:
+			switch (wParam)
+			{
+			case VK_LEFT:
+				input->InputKey("LEFT", false);
+				//input->CallKeyFunc("LEFT");
+				break;
+			case VK_RIGHT:
+				input->InputKey("RIGHT", false);
+				//input->CallKeyFunc("RIGHT");
+				break;
+			case VK_UP:
+				input->InputKey("UP", false);
+				//input->CallKeyFunc("UP");
+				break;
+			case VK_DOWN:
+				input->InputKey("DOWN", false);
+				//input->CallKeyFunc("DOWN");
 				break;
 			}
 
@@ -547,7 +577,11 @@ void Render()
     g_pImmediateContext->PSSetConstantBuffers( 2, 1, &g_pCBChangesEveryFrame );
 	g_pImmediateContext->PSSetSamplers(0, 1, &g_pSamplerLinear);
 
-	objManager->Render();
+	// 사용자 정의
+
+	input->ProcessInput();
+	timer->Frame();
+	objManager->Render(timer->GetTime());
 
     //
     // Present our back buffer to our front buffer

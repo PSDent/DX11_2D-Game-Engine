@@ -16,9 +16,11 @@ public:
 	
 	void Initialize(ID3D11DeviceContext*, ID3D11Device*, float, float, Input*);
 	void CreateObject(float, float);
-	void Render();
+	void Render(float);
 
 	void Release();
+
+	
 
 private:
 	void InsertObject(); 

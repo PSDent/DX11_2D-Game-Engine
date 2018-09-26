@@ -15,7 +15,7 @@ public:
 	//Sprite(const Sprite&);
 
 	bool Initialize(ID3D11Device*, ID3D11DeviceContext*, SPRITE_INFO, float, float);
-	void Render(ID3D11DeviceContext* deviceContext);
+	void Render(ID3D11DeviceContext*, float);
 	Texture* GetTexture();
 	ID3D11ShaderResourceView* GetTextureView();
 	int GetIndex();
@@ -25,6 +25,8 @@ public:
 
 	int* GetTexPosX();
 	int* GetTexPosY();
+
+	void SetFlipX(bool);
 
 private:
 	void SetSpritePos();
@@ -36,7 +38,10 @@ private:
 
 private:
 	int m_index;
+	bool m_flipX;
+	bool m_flipY;
 
+	float m_time;
 	float &m_objPosX;
 	float &m_objPosY;
 

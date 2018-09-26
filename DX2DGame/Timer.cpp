@@ -36,7 +36,7 @@ void Timer::Frame()
 	
 	m_startTime = currentTime;
 
-	AddFrameTime();
+	//AddFrameTime();
 }
 
 void Timer::AddFrameTime()

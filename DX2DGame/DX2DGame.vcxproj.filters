@@ -108,6 +108,9 @@
     <ClInclude Include="Waiter.h">
       <Filter>Header\ObjectManager\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="Key.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource">

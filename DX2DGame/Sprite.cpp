@@ -11,10 +11,14 @@ Sprite::Sprite(float &X, float &Y) : m_objPosX(X), m_objPosY(Y)
 	m_height = 100;
 	m_width = 100;
 
+	m_time = 0;
 	m_TexWidth = 0.3f;
 	m_TexHeight = 0.25f;
 	m_TexPosX = 0;
 	m_TexPosY = 0;
+
+	m_flipX = true;
+	m_flipY = false;
 }
 
 Sprite::~Sprite()
@@ -161,11 +165,12 @@ void Sprite::SetSpriteInfo(SPRITE_INFO spriteInfo)
 	m_TexHeight = m_spriteInfo->height;
 }
 
-void Sprite::Render(ID3D11DeviceContext* deviceContext)
+void Sprite::Render(ID3D11DeviceContext* deviceContext, float deltaTime)
 {
 	UINT stride = sizeof(SimpleVertex);
 	UINT offset = 0;
 	
+	m_time += deltaTime;
 	UpdateBuffer(deviceContext);
 
 	deviceContext->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset);
@@ -192,15 +197,16 @@ void Sprite::UpdateBuffer(ID3D11DeviceContext* deviceContext)
 
 	// Calculate the screen coordinates of the bottom of the bitmap.
 	bottom = top - m_height;//(float)m_spriteInfo->height;
-		
-	if (m_animInfo)
+
+	if (m_animInfo && m_time >= m_animInfo->speed * 100.0f)
 	{
+		m_time = 0;
 		m_TexPosX += 1;
-		if (m_TexPosX > m_animInfo->column)
+		if (m_TexPosX >= m_animInfo->column)
 		{
 			m_TexPosY += 1;
 			m_TexPosX = 0;
-			if (m_TexPosY > m_animInfo->row)
+			if (m_TexPosY >= m_animInfo->row)
 			{
 				m_TexPosY = 0;
 				m_TexPosX = 0;
@@ -208,13 +214,36 @@ void Sprite::UpdateBuffer(ID3D11DeviceContext* deviceContext)
 		}
 	}
 	
-	SimpleVertex vertices[] =
+	SimpleVertex vertices[4];
+	// flipX 를 활성 / 비활성화 시켜서 스프라이트를 반전시킨다.
+	if (!m_flipX)
 	{
-		{ XMFLOAT3(left, bottom, 0.0f), XMFLOAT2(m_TexPosX * m_TexWidth, (m_TexPosY + 1) * m_TexHeight) },
-		{ XMFLOAT3(left, top, 0.0f), XMFLOAT2(m_TexPosX * m_TexWidth, m_TexPosY * m_TexHeight) },
-		{ XMFLOAT3(right, top, 0.0f), XMFLOAT2((m_TexPosX + 1) * m_TexWidth, m_TexPosY * m_TexHeight) },
-		{ XMFLOAT3(right, bottom, 0.0f), XMFLOAT2((m_TexPosX + 1) * m_TexWidth, (m_TexPosY + 1) * m_TexHeight) }
-	};
+		vertices[0].Pos = XMFLOAT3(left, bottom, 0.0f);
+		vertices[0].Tex = XMFLOAT2(m_TexPosX * m_TexWidth, (m_TexPosY + 1) * m_TexHeight);
+
+		vertices[1].Pos = XMFLOAT3(left, top, 0.0f);
+		vertices[1].Tex = XMFLOAT2(m_TexPosX * m_TexWidth, m_TexPosY * m_TexHeight);
+
+		vertices[2].Pos = XMFLOAT3(right, top, 0.0f);
+		vertices[2].Tex = XMFLOAT2((m_TexPosX + 1) * m_TexWidth, m_TexPosY * m_TexHeight);
+
+		vertices[3].Pos = XMFLOAT3(right, bottom, 0.0f);
+		vertices[3].Tex = XMFLOAT2((m_TexPosX + 1) * m_TexWidth, (m_TexPosY + 1) * m_TexHeight);
+	}
+	else
+	{
+		vertices[0].Pos = XMFLOAT3(left, bottom, 0.0f);
+		vertices[0].Tex = XMFLOAT2((m_TexPosX + 1) * m_TexWidth, (m_TexPosY + 1) * m_TexHeight);
+
+		vertices[1].Pos = XMFLOAT3(left, top, 0.0f);
+		vertices[1].Tex = XMFLOAT2((m_TexPosX + 1) * m_TexWidth, m_TexPosY * m_TexHeight);
+		
+		vertices[2].Pos = XMFLOAT3(right, top, 0.0f);
+		vertices[2].Tex = XMFLOAT2(m_TexPosX * m_TexWidth, m_TexPosY * m_TexHeight);
+
+		vertices[3].Pos = XMFLOAT3(right, bottom, 0.0f);
+		vertices[3].Tex = XMFLOAT2(m_TexPosX * m_TexWidth, (m_TexPosY + 1) * m_TexHeight);
+	}
 
 	deviceContext->Map(m_vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 	verticesPtr = (SimpleVertex*)mappedResource.pData;
@@ -242,4 +271,9 @@ void Sprite::AnimationSet(Animation anim)
 int Sprite::GetIndex()
 {
 	return m_index;
+}
+
+void Sprite::SetFlipX(bool val)
+{
+	m_flipX = val;
 }

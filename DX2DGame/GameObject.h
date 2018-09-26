@@ -20,7 +20,7 @@ public:
 	 
 	// Object Method
 	bool Initialize(ID3D11DeviceContext*, ID3D11Device*, float, float, float, float);
-	void Render(ID3D11DeviceContext*);
+	void Render(ID3D11DeviceContext*, float);
 	void Release();
 
 	void MovePos(float, float);
