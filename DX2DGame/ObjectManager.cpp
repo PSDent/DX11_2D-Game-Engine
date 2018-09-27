@@ -48,6 +48,9 @@ void ObjectManager::CreateObject(float posX, float posY)
 	temp->CreateComponent<Animator>();
 	temp->GetComponent<Animator*>()->AddAnim(Animation("Test", ANIMATION_INFO{ Cat, 0.1f, 0.1f, 1, 10, 0.5f }));
 	
+	temp->CreateComponent<RigidBody2D>();
+	//temp->GetComponent<RigidBody2D*>()->AddForce(XMFLOAT2(0.1f, ))
+
 	m_objContainer->push_back(temp);
 
 	/*GameObject *temp = new GameObject();

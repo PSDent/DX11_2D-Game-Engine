@@ -3,6 +3,7 @@
 #include "Sprite.h"
 #include "Collider.h"
 #include "Animator.h"
+#include "RigidBody2D.h"
 #include "Common.h"
 
 #include <vector>
@@ -59,6 +60,7 @@ private:
 	Sprite *m_sprite;
 	Collider *m_collider;
 	Animator *m_animator;
+	RigidBody2D *m_rigidBody2D;
 	std::vector<GameObject> m_childObj;
 
 };
@@ -84,6 +86,11 @@ void GameObject::CreateComponent()
 	{
 
 	}
+	else if (typeid(T) == typeid(RigidBody2D))
+	{
+		if (!m_rigidBody2D)
+			m_rigidBody2D = new RigidBody2D(m_position.x, m_position.y);
+	}
 }
 
 // TO DO
@@ -101,10 +108,16 @@ T GameObject::GetComponent()
 		if (m_sprite != NULL)
 			return (T)m_sprite;
 	}
-	//else if (typeid(T) == typeid(Collider))
-	//{
-	//	return m_collider;
-	//}
+	else if (typeid(T) == typeid(Collider))
+	{
+		if (m_collider)
+		return (T)m_collider;
+	}
+	else if (typeid(T) == typeid(RigidBody2D))
+	{
+		if (m_rigidBody2D)
+			return (T)m_rigidBody2D;
+	}
 
 	return nullptr;
 }

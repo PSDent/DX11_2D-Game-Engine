@@ -37,26 +37,26 @@ void Player::SetKeyFunc()
 
 void Player::MoveLeft()
 {
-	GameObject::MovePos(-0.1f, 0);
+	GameObject::MovePos(-MOVE_SPEED, 0);
 	GetComponent<Sprite*>()->SetFlipX(true);
 	// MessageBox(NULL, L"Left", L"Test", MB_OK);
 }
 
 void Player::MoveRight()
 {
-	GameObject::MovePos(0.1f, 0);
+	GameObject::MovePos(MOVE_SPEED, 0);
 	GetComponent<Sprite*>()->SetFlipX(false);
 	//MessageBox(NULL, L"Right", L"Test", MB_OK);
 }
 
 void Player::MoveDown()
 {
-	GameObject::MovePos(0, 0.1f);
+	GameObject::MovePos(0, MOVE_SPEED);
 	//MessageBox(NULL, L"Down", L"Test", MB_OK);
 }
 
 void Player::MoveUp()
 {
-	GameObject::MovePos(0, -0.1f);
+	GameObject::MovePos(0, -MOVE_SPEED);
 	//MessageBox(NULL, L"Up", L"Test", MB_OK);
 }

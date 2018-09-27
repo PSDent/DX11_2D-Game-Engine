@@ -52,6 +52,9 @@
     <ClCompile Include="Waiter.cpp">
       <Filter>Cpp\ObjectManager\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="RigidBody2D.cpp">
+      <Filter>Cpp\ObjectManager\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
@@ -110,6 +113,9 @@
     </ClInclude>
     <ClInclude Include="Key.h">
       <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody2D.h">
+      <Filter>Header\ObjectManager\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

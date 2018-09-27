@@ -5,6 +5,7 @@ GameObject::GameObject()
 	m_sprite = NULL;
 	m_collider = NULL;
 	m_animator = NULL;
+	m_rigidBody2D = NULL;
 }
 
 GameObject::~GameObject() { }
@@ -52,6 +53,8 @@ void GameObject::Render(ID3D11DeviceContext *deviceContext, float deltaTime)
 {
 	if(m_sprite)
 		m_sprite->Render(deviceContext, deltaTime);
+	if (m_rigidBody2D)
+		m_rigidBody2D->Frame(deltaTime);
 	//if (m_animator)
 	//	m_animator->Frame();
 	//if (m_collider)

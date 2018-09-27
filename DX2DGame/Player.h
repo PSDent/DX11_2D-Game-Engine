@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObject.h"
 
+const float MOVE_SPEED = 1.0f;
+
 class Input;
 
 class Player : public GameObject
