@@ -13,17 +13,20 @@ public:
 
 	void Initialize(ID3D11DeviceContext*, ID3D11Device*, float, float, float, float, Input*);
 	void SetInput(Input*);
-	void MoveDown();
+	
 private:
 	void SetKeyFunc();
 
 	void MoveLeft();
 	void MoveRight();
 	void MoveUp();
-
+	void MoveDown();
+	void Jump();
 
 private:
 	Input *m_input;
+
+	float m_jumpPower;
 
 };
 

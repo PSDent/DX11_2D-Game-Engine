@@ -4,6 +4,7 @@
 
 Player::Player()
 {
+	m_jumpPower = 3.0f;
 }
 
 
@@ -33,6 +34,7 @@ void Player::SetKeyFunc()
 	m_input->BindingKey("RIGHT", &Player::MoveRight);
 	m_input->BindingKey("DOWN", &Player::MoveDown);
 	m_input->BindingKey("UP", &Player::MoveUp);
+	m_input->BindingKey("JUMP", &Player::Jump);
 }
 
 void Player::MoveLeft()
@@ -59,4 +61,9 @@ void Player::MoveUp()
 {
 	GameObject::MovePos(0, -MOVE_SPEED);
 	//MessageBox(NULL, L"Up", L"Test", MB_OK);
+}
+
+void Player::Jump()
+{
+	GameObject::GetComponent<RigidBody2D*>()->AddForce(XMFLOAT2{ 0.0f, m_jumpPower });
 }

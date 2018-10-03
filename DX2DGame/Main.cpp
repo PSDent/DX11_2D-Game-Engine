@@ -95,6 +95,12 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdL
         else
         {
 			//Sleep(200);
+			char buf[100];
+			wchar_t text[100];
+			sprintf(buf, "%f", timer->GetTime());
+			mbstowcs(text, buf, strlen(buf) + 1);
+			SetWindowText(g_hWnd, text);
+			
             Render();
         }
     }
@@ -497,6 +503,9 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 				input->InputKey("DOWN", true);
 				//input->CallKeyFunc("DOWN");
 				break;
+			case VK_SPACE:
+				input->InputKey("JUMP", true);
+				break;
 			case VK_ESCAPE:
 				PostQuitMessage(0);
 			default:
@@ -521,6 +530,10 @@ LRESULT CALLBACK WndProc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam 
 			case VK_DOWN:
 				input->InputKey("DOWN", false);
 				//input->CallKeyFunc("DOWN");
+				break;
+
+			case VK_SPACE:
+				input->InputKey("JUMP", false);
 				break;
 			}
 

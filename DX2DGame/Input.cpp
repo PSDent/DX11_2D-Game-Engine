@@ -14,7 +14,7 @@ void Input::Initialize()
 {
 	m_keyArr = new PLAYER_FUNC[(int)Key::SIZE];
 	//m_keyState = new bool[(int)Key::SIZE];
-	m_keyState = new bool[4];
+	m_keyState = new bool[(int)Key::SIZE];
 	for (int i = 0; i < (int)Key::SIZE; ++i)
 	{
 		m_keyState[i] = false;

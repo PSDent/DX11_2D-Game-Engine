@@ -388,6 +388,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="MathLib.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RigidBody2D.cpp" />
@@ -410,6 +411,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Key.h" />
+    <ClInclude Include="MathLib.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Player.h" />
     <CLInclude Include="resource.h" />

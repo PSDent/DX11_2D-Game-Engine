@@ -6,5 +6,6 @@ enum class Key
 	RIGHT,
 	UP,
 	DOWN,
+	JUMP,
 	SIZE
 };

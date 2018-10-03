@@ -55,6 +55,9 @@
     <ClCompile Include="RigidBody2D.cpp">
       <Filter>Cpp\ObjectManager\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="MathLib.cpp">
+      <Filter>Cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h">
@@ -117,6 +120,7 @@
     <ClInclude Include="RigidBody2D.h">
       <Filter>Header\ObjectManager\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="MathLib.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Resource">

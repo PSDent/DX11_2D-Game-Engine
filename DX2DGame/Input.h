@@ -7,7 +7,7 @@
 class __single_inheritance Player;
 
 typedef void(Player::*PLAYER_FUNC)();
-static std::string keyStr[] = { "LEFT", "RIGHT", "UP", "DOWN" };
+static std::string keyStr[] = { "LEFT", "RIGHT", "UP", "DOWN", "JUMP" };
 
 class Input
 {

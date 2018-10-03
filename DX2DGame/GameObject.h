@@ -99,21 +99,20 @@ T GameObject::GetComponent()
 {
 	if (typeid(T) == typeid(Animator*))
 	{
-		if(m_animator != NULL)
+		if(m_animator)
 			return (T)m_animator;
 	}
-
-	if (typeid(T) == typeid(Sprite*))
+	else if (typeid(T) == typeid(Sprite*))
 	{
-		if (m_sprite != NULL)
+		if (m_sprite)
 			return (T)m_sprite;
 	}
-	else if (typeid(T) == typeid(Collider))
+	else if (typeid(T) == typeid(Collider*))
 	{
 		if (m_collider)
 		return (T)m_collider;
 	}
-	else if (typeid(T) == typeid(RigidBody2D))
+	else if (typeid(T) == typeid(RigidBody2D*))
 	{
 		if (m_rigidBody2D)
 			return (T)m_rigidBody2D;
